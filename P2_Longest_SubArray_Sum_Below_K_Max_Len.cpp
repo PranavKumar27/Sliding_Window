@@ -38,6 +38,12 @@ int findLongestSubArrLength_Sol1(vector<int>& Arr,int k)
                 max_sum = max(sum,max_sum);
                 max_len = max(len,max_len);
             }
+            /*
+            else if(sum>k) //--> Works Only if all Numbers are Positive
+            {
+                break;
+            }
+            */
         }
     }
     cout << "Using Sol1 Max Sum=" << max_sum << " max_len=" << max_len << endl;
@@ -49,6 +55,7 @@ int findLongestSubArrLength_Sol2(vector<int>& Arr,int k)
 {
     int n = Arr.size();
 
+    // {2,3,5,1,2,6,-2};
     int max_sum = -1e9;
     int max_len=-1e9;
     for(int i=0;i<n;i++)
@@ -59,12 +66,19 @@ int findLongestSubArrLength_Sol2(vector<int>& Arr,int k)
         {
             sum+=Arr[j];
             len = j-i+1;
-
-            if(sum<=k && max_sum<=sum && max_len<len)
+            cout << "sum=" << sum << endl;
+            if(sum<=k)
             {
                 max_sum = max(sum,max_sum);
                 max_len = max(len,max_len);
             }
+            /*
+            else if(sum>k) //--> Works Only if all Numbers are Positive
+            {
+                cout << "Break Here sum=" << sum << " k=" <<  k << endl;
+                break;
+            }
+            */
 
         }
     }
