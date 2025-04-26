@@ -64,15 +64,40 @@ int findMaxWindow_Sum_Sol2(vector<int>& Arr,int k)
    }
    return max_sum;
 }
+
+
+int findMaxWindow_Sum_Sol3(vector<int>& Arr,int k)
+{
+    int n = Arr.size();
+    int l = n-k;
+    int r = n-1;
+
+    int sum = findSum(Arr,l,r);
+    int max_sum = sum;
+    r=(r+1)%n;
+    while(r<k && n!=k)
+    {
+        sum = sum-Arr[l];
+        l=(l+1)%n;
+        sum = sum+Arr[r];
+        r=(r+1)%n;
+        cout << "sum=" << sum << endl;
+        max_sum = max(max_sum,sum);
+    }
+    return max_sum;
+}
 int main()
 {
-    vector<int> Arr = {1,2,3,4,5,6,1};
-    int K = 4;
+    vector<int> Arr = {9,7,7,9,7,7,9};
+    int K = 7;
 
-    int ans1 = findMaxWindow_Sum_Sol1(Arr,K);
-    cout << "Using Sol 1 Max Window Sum =" << ans1 << endl;
+    //int ans1 = findMaxWindow_Sum_Sol1(Arr,K);
+    //cout << "Using Sol 1 Max Window Sum =" << ans1 << endl;
 
-    int ans2 = findMaxWindow_Sum_Sol2(Arr,K);
-    cout << "Using Sol 2 Max Window Sum =" << ans2 << endl;
+    //int ans2 = findMaxWindow_Sum_Sol2(Arr,K);
+    //cout << "Using Sol 2 Max Window Sum =" << ans2 << endl;
+
+    int ans3 = findMaxWindow_Sum_Sol3(Arr,K);
+    cout << "Using Sol 3 Max Window Sum =" << ans3 << endl;
     return 0;
 }
