@@ -119,13 +119,13 @@ int MaxUniqueSubString_Sol3(string Str)
 int main()
 {
     string str = "aabaab!bb";
-    /*
+    
     int ans1 = MaxUniqueSubString_Sol1(str);
     cout << "Using Sol1 MaxLen of Unique SubString=" << ans1 << endl;
 
     int ans2 = MaxUniqueSubString_Sol2(str);
     cout << "Using Sol2 MaxLen of Unique SubString=" << ans2 << endl;
-    */
+
     int ans3 = MaxUniqueSubString_Sol3(str);
     cout << "Using Sol3 MaxLen of Unique SubString=" << ans3 << endl;
 
