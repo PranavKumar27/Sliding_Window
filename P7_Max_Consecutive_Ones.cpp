@@ -33,39 +33,66 @@ int MaxConsecutive_1s_With_k_Os_Sol1(vector<int>Arr,int k)
     }
     return max_len;
 }
-
+// TC -> O(N)+O(N)
+// SC -> O(1)
 int MaxConsecutive_1s_With_k_Os_Sol2(vector<int>Arr,int k)
 {
     int n = Arr.size();
     int l=0;
     int r=0;
 
-    int max_len=0,len=0,max_k=0;
-    while(l<=r && r<n)
+    int max_len=0,len=0,Zeros=0;
+    while(r<n)
     {
-       if(Arr[r]==1)
-        r++;
-       else if(Arr[r]==0 && max_k<k)
+       if(Arr[r]==0)
+           Zeros++;
+
+       while(Zeros>k)
        {
-           r++;
-           max_k++;
-           cout << "** l=" << l << " r=" << r << endl;
-           if(max_k==k)
+           if(Arr[l]==0)
            {
-               len = r-l;
-               max_len = max(max_len,len);
-               max_k=0;
-               l=r;
+               Zeros--;
            }
+           l++;
        }
-       else
+
+        len = r-l+1;
+        max_len = max(max_len,len);
+        r=r+1;
+    }
+    return max_len;
+
+}
+
+// TC -> O(N)
+// SC -> O(1)
+int MaxConsecutive_1s_With_k_Os_Sol3(vector<int>Arr,int k)
+{
+    int n = Arr.size();
+    int l=0;
+    int r=0;
+
+    int max_len=0,len=0,Zeros=0;
+    while(r<n)
+    {
+       if(Arr[r]==0)
+           Zeros++;
+
+       if(Zeros>k)
        {
-           cout << "l=" << l << " r=" << r << endl;
-           len = r-l;
-           max_len = max(max_len,len);
-           max_k=0;
-           l=r;
+           if(Arr[l]==0)
+           {
+               Zeros--;
+           }
+           l++;
        }
+
+       if(Zeros<=k)
+       {
+            len = r-l+1;
+            max_len = max(max_len,len);
+       }
+       r=r+1;
     }
     return max_len;
 
@@ -80,6 +107,9 @@ int main()
 
     int ans2 = MaxConsecutive_1s_With_k_Os_Sol2(Arr,k);
     cout << "Using Sol2 MaxConsecutive 1s With k O's =" << ans2 << endl;
+
+    int ans3 = MaxConsecutive_1s_With_k_Os_Sol3(Arr,k);
+    cout << "Using Sol3 MaxConsecutive 1s With k O's =" << ans3 << endl;
 
     return 0;
 }
