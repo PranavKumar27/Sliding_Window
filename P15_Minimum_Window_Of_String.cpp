@@ -161,7 +161,6 @@ string findMinLenSubStringWithAllCharsofT_Sol2(string& s,string& t)
 
 string findMinLenSubStringWithAllCharsofT_Sol3(string& s,string& t)
 {
-    cout << __FUNCTION__ << endl;
     int n = s.size();
     int m = t.size();
 
@@ -178,17 +177,13 @@ string findMinLenSubStringWithAllCharsofT_Sol3(string& s,string& t)
     bool flag=false;
     while(r<n)
     {
-       if(!flag)
-       {
-           Mp[s[r]]--;
+        if(Mp[s[r]]>0) // Pre Filled or Pre Inserted
+        {
+            cnt=cnt+1;
+        }
+        Mp[s[r]]--;
 
-           if(Mp[s[r]]==0) // Pre Filled or Pre Inserted
-           {
-               cnt=cnt+1;
-           }
-       }
-
-       if(cnt==m)
+       while(cnt==m)
        {
            int len = r-l+1;
            if(min_len>len)
@@ -198,36 +193,23 @@ string findMinLenSubStringWithAllCharsofT_Sol3(string& s,string& t)
            }
 
            Mp[s[l]]++;
-           if(Mp[s[l]]==1) // It was Pre Inserted from t
+           if(Mp[s[l]]>0) // It was Pre Inserted from t kEEP gRREATER than zero and Not Equal to 1
            {
                cnt = cnt-1;
-               l++;
-               flag = false;
            }
-           else
-           {
-               flag = true;
-               l++;
-               continue;
-           }
+           l++;
        }
        r++;
     }
 
     string sub = "";
-    cout << "min_len=" << min_len << endl;
-    cout << "start_idx=" << start_idx << endl;
-    if(min_len<=s.size())
+    if(start_idx!=-1)
+    {
         sub = s.substr(start_idx,min_len);
-
-    cout << "sub=" << sub << endl;
-    //int idx = s.find(sub);
-    //cout << "idx=" << idx << endl;
-    //if(idx!= string::npos)
         return sub;
-    //else
-        //return "";
-
+    }
+    else
+        return "";
 
 }
 int main()
