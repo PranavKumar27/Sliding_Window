@@ -44,6 +44,8 @@ void print_Map(unordered_map<char,int> Mp)
     }
     cout << endl;
 }
+// TC --> O(N*N)
+// SC -> O(2N)
 string findMinLenSubStringWithAllCharsofT_Sol1(string& s,string& t)
 {
         cout << __FUNCTION__ << endl;
@@ -108,6 +110,8 @@ string findMinLenSubStringWithAllCharsofT_Sol1(string& s,string& t)
         return ans;
 }
 
+// TC --> O(N*N)
+// SC -> O(N)
 string findMinLenSubStringWithAllCharsofT_Sol2(string& s,string& t)
 {
     int n = s.size();
@@ -158,7 +162,8 @@ string findMinLenSubStringWithAllCharsofT_Sol2(string& s,string& t)
 
 }
 
-
+// TC --> O(N) + O(N) + O(N) = O(3N)
+// SC -> O(N)
 string findMinLenSubStringWithAllCharsofT_Sol3(string& s,string& t)
 {
     int n = s.size();
@@ -216,13 +221,13 @@ int main()
 {
     string s = "bbaa",t="aba";
 
-/*
+
     string ans1 = findMinLenSubStringWithAllCharsofT_Sol1(s,t);
     cout << "Using Sol 1 Min Len SubString With All CharsofT =" << ans1 << endl;
 
     string ans2 = findMinLenSubStringWithAllCharsofT_Sol2(s,t);
     cout << "Using Sol 2 Min Len SubString With All CharsofT =" << ans2 << endl;
-*/
+
     string ans3 = findMinLenSubStringWithAllCharsofT_Sol3(s,t);
     cout << "Using Sol 3 Min Len SubString With All CharsofT =" << ans3 << endl;
 
