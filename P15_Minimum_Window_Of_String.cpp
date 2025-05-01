@@ -162,7 +162,7 @@ string findMinLenSubStringWithAllCharsofT_Sol2(string& s,string& t)
 
 }
 
-// TC --> O(N) + O(N) + O(N) = O(3N)
+// TC --> O(N) + O(N) + O(M) = O(2N) + O(M)
 // SC -> O(N)
 string findMinLenSubStringWithAllCharsofT_Sol3(string& s,string& t)
 {
@@ -173,14 +173,14 @@ string findMinLenSubStringWithAllCharsofT_Sol3(string& s,string& t)
 
     unordered_map<char,int> Mp;
 
-    for(int i=0;i<m;i++)
+    for(int i=0;i<m;i++)  // O(M)
         Mp[t[i]]++;
 
     int cnt=0;
     int min_len=1e9;
     int start_idx=-1;
     bool flag=false;
-    while(r<n)
+    while(r<n)   // O(N)
     {
         if(Mp[s[r]]>0) // Pre Filled or Pre Inserted
         {
@@ -188,7 +188,7 @@ string findMinLenSubStringWithAllCharsofT_Sol3(string& s,string& t)
         }
         Mp[s[r]]--;
 
-       while(cnt==m)
+       while(cnt==m)  // O(N)
        {
            int len = r-l+1;
            if(min_len>len)
